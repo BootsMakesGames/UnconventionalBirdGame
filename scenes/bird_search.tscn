@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://j48wycm0revl"]
+
+[ext_resource type="Texture2D" uid="uid://bfsb0y2csgiaf" path="res://placeholder_art/placeholder_BG.png" id="1_n5hdv"]
+[ext_resource type="Texture2D" uid="uid://37d5awb7vrao" path="res://placeholder_art/placeholder_BG_layer1.png" id="2_0tce7"]
+[ext_resource type="Texture2D" uid="uid://b213p4qr1eanb" path="res://placeholder_art/placeholder_BG_layer2.png" id="3_6rbm5"]
+[ext_resource type="Texture2D" uid="uid://cakaldlld4iwi" path="res://placeholder_art/placeholder_BG_layer3.png" id="4_t3jv8"]
+
+[node name="Node3D" type="Node3D" unique_id=1848525013]
+
+[node name="BG" type="Sprite3D" parent="." unique_id=1754487664]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.020458, 5.9678674, 0)
+texture = ExtResource("1_n5hdv")
+
+[node name="BGLayer1" type="Sprite3D" parent="BG" unique_id=105309446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10874748, 0.014585018, 0.32391977)
+texture = ExtResource("2_0tce7")
+
+[node name="BGLayer2" type="Sprite3D" parent="BG" unique_id=1989794599]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15903187, -0.23841906, 0.65774155)
+texture = ExtResource("3_6rbm5")
+
+[node name="BGLayer3" type="Sprite3D" parent="BG" unique_id=1707063440]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.52602863, 0.15521145, 1.1173983)
+texture = ExtResource("4_t3jv8")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1319932634]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.94706, 6.2655354, 6.263836)

@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://b6qc4cwx6wn7v"]
+
+[ext_resource type="Texture2D" uid="uid://3ryyu85ljq6" path="res://placeholder_art/tablet3.png" id="1_1yr3t"]
+[ext_resource type="Texture2D" uid="uid://buiqh0o5eghoj" path="res://placeholder_art/placeholder_sprite_app-portrait.png" id="2_uj8gt"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_t52b7"]
+
+[node name="Node2D" type="Node2D" unique_id=693751274]
+
+[node name="PhoneSprite" type="NinePatchRect" parent="." unique_id=1049545017]
+offset_left = 332.0
+offset_top = 3.0
+offset_right = 782.0
+offset_bottom = 751.0
+texture = ExtResource("1_1yr3t")
+region_rect = Rect2(0, 0, 251, 322)
+patch_margin_left = 41
+patch_margin_top = 43
+patch_margin_right = 42
+patch_margin_bottom = 39
+
+[node name="PhoneScreen" type="TextureRect" parent="PhoneSprite" unique_id=1490509434]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 30.0
+offset_right = 414.0
+offset_bottom = 718.0
+texture = SubResource("CanvasTexture_t52b7")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PhoneSprite/PhoneScreen" unique_id=78769319]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 38.0
+offset_right = 381.0
+offset_bottom = 617.0
+
+[node name="AppUI" type="VBoxContainer" parent="PhoneSprite/PhoneScreen/ScrollContainer" unique_id=1123010086]
+layout_mode = 2
+
+[node name="AppHeader" type="HSplitContainer" parent="PhoneSprite/PhoneScreen/ScrollContainer/AppUI" unique_id=629565918]
+layout_mode = 2
+size_flags_vertical = 4
+split_offsets = PackedInt32Array(1, 0)
+split_offset = 1
+
+[node name="BirdPortrait" type="Sprite2D" parent="PhoneSprite/PhoneScreen/ScrollContainer/AppUI/AppHeader" unique_id=1505720672]
+position = Vector2(265, 100)
+scale = Vector2(0.5902256, 0.5902256)
+texture = ExtResource("2_uj8gt")
+
+[node name="NameText" type="VSplitContainer" parent="PhoneSprite/PhoneScreen/ScrollContainer/AppUI/AppHeader" unique_id=2130486951]
+layout_mode = 2
+split_offsets = PackedInt32Array(0, 0)
+
+[node name="BirdName" type="Label" parent="PhoneSprite/PhoneScreen/ScrollContainer/AppUI/AppHeader/NameText" unique_id=1349955905]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.21363452, 0.0003110209, 0.31965822, 1)
+theme_override_font_sizes/font_size = 24
+text = "Bird Name"
+
+[node name="SpeciesName2" type="Label" parent="PhoneSprite/PhoneScreen/ScrollContainer/AppUI/AppHeader/NameText" unique_id=2026253196]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4830834, 0.29140002, 0.62, 1)
+text = "Species name"
+horizontal_alignment = 1
+
+[node name="BirdDescription" type="RichTextLabel" parent="PhoneSprite/PhoneScreen/ScrollContainer/AppUI" unique_id=1981912025]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.14, 0.14, 0.14, 1)
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+fit_content = true
