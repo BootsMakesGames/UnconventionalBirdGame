@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cilomra37gg2o"]
+
+[ext_resource type="Texture2D" uid="uid://buiqh0o5eghoj" path="res://placeholder_art/placeholder_sprite_app-portrait.png" id="1_dwk8m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwk8m"]
+content_margin_left = 88.0
+content_margin_top = 10.0
+content_margin_right = 88.0
+content_margin_bottom = 10.0
+bg_color = Color(0.0798, 0.15693998, 0.19, 0.68235296)
+
+[sub_resource type="Theme" id="Theme_6q285"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_dwk8m")
+
+[sub_resource type="Theme" id="Theme_dwk8m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6q285"]
+bg_color = Color(0.036989234, 0.08808375, 0.11598667, 1)
+
+[node name="DialogueUI" type="Control" unique_id=638420531]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogueBox" type="PanelContainer" parent="." unique_id=790572365]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 472.0
+offset_right = 1144.0
+offset_bottom = 640.0
+theme = SubResource("Theme_6q285")
+
+[node name="DialogueText" type="RichTextLabel" parent="DialogueBox" unique_id=1335971535]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 31
+text = "Cheep cheep! I'm saying funny bird things!"
+
+[node name="NameBox" type="PanelContainer" parent="." unique_id=1710014544]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 408.0
+offset_right = 384.0
+offset_bottom = 472.0
+theme = SubResource("Theme_dwk8m")
+theme_override_styles/panel = SubResource("StyleBoxFlat_6q285")
+
+[node name="SpeakerName" type="Label" parent="NameBox" unique_id=314217006]
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "Bird Name"
+horizontal_alignment = 1
+
+[node name="NextArrow" type="TextureButton" parent="." unique_id=1508090699]
+layout_mode = 0
+offset_left = 1080.0
+offset_top = 512.0
+offset_right = 1136.0
+offset_bottom = 584.0
+texture_normal = ExtResource("1_dwk8m")
+ignore_texture_size = true
+stretch_mode = 0
+flip_h = true
+
+[node name="PrevArrow" type="TextureButton" parent="." unique_id=410239197]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 512.0
+offset_right = 72.0
+offset_bottom = 584.0
+texture_normal = ExtResource("1_dwk8m")
+ignore_texture_size = true
+stretch_mode = 0

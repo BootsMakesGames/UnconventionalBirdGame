@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dqml6gxe0vdju"]
+
+[ext_resource type="Texture2D" uid="uid://m120u6eis4v0" path="res://placeholder_art/placeholder_sprite_happy.png" id="1_k8qwi"]
+
+[node name="CharacterSprite" type="Node2D" unique_id=678368030]
+
+[node name="Character" type="Sprite2D" parent="." unique_id=679156401]
+position = Vector2(568, 344)
+scale = Vector2(0.6797468, 0.67974687)
+texture = ExtResource("1_k8qwi")

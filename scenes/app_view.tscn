@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://b6qc4cwx6wn7v"]
 
 [ext_resource type="Texture2D" uid="uid://3ryyu85ljq6" path="res://placeholder_art/tablet3.png" id="1_1yr3t"]
+[ext_resource type="Script" uid="uid://dc1ew0te1imuq" path="res://scripts/app_view.gd" id="1_uj8gt"]
 [ext_resource type="Texture2D" uid="uid://buiqh0o5eghoj" path="res://placeholder_art/placeholder_sprite_app-portrait.png" id="2_uj8gt"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_t52b7"]
 
-[node name="Node2D" type="Node2D" unique_id=693751274]
+[node name="AppScene" type="Node2D" unique_id=693751274]
+script = ExtResource("1_uj8gt")
 
 [node name="PhoneSprite" type="NinePatchRect" parent="." unique_id=1049545017]
 offset_left = 332.0
