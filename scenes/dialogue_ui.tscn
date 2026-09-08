@@ -56,6 +56,8 @@ text = "Bird Name"
 horizontal_alignment = 1
 
 [node name="NextArrow" type="TextureButton" parent="." unique_id=1508090699]
+unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 1080.0
 offset_top = 512.0
@@ -67,6 +69,8 @@ stretch_mode = 0
 flip_h = true
 
 [node name="PrevArrow" type="TextureButton" parent="." unique_id=410239197]
+unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 16.0
 offset_top = 512.0
@@ -75,3 +79,6 @@ offset_bottom = 584.0
 texture_normal = ExtResource("1_dwk8m")
 ignore_texture_size = true
 stretch_mode = 0
+
+[connection signal="pressed" from="NextArrow" to="." method="_on_next_arrow_pressed"]
+[connection signal="pressed" from="PrevArrow" to="." method="_on_prev_arrow_pressed"]
