@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cilomra37gg2o"]
 
+[ext_resource type="Script" uid="uid://cikwwjue34ufi" path="res://scripts/dialogue_ui.gd" id="1_6q285"]
 [ext_resource type="Texture2D" uid="uid://buiqh0o5eghoj" path="res://placeholder_art/placeholder_sprite_app-portrait.png" id="1_dwk8m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwk8m"]
@@ -24,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6q285")
 
 [node name="DialogueBox" type="PanelContainer" parent="." unique_id=790572365]
 layout_mode = 0

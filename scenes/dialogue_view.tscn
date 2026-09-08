@@ -16,8 +16,10 @@ texture = ExtResource("1_imvkc")
 expand_mode = 1
 
 [node name="CharacterSprite" parent="." unique_id=678368030 instance=ExtResource("3_b7lcb")]
+unique_name_in_owner = true
 
 [node name="DialogueUI" parent="." unique_id=638420531 instance=ExtResource("4_b7lcb")]
+unique_name_in_owner = true
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
