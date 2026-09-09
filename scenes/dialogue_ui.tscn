@@ -35,7 +35,7 @@ offset_right = 1144.0
 offset_bottom = 640.0
 theme = SubResource("Theme_6q285")
 
-[node name="DialogueText" type="RichTextLabel" parent="DialogueBox" unique_id=1335971535]
+[node name="Dialogue" type="RichTextLabel" parent="DialogueBox" unique_id=1335971535]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 31
 text = "Cheep cheep! I'm saying funny bird things!"

@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://dqml6gxe0vdju"]
 
 [ext_resource type="Texture2D" uid="uid://m120u6eis4v0" path="res://placeholder_art/placeholder_sprite_happy.png" id="1_k8qwi"]
+[ext_resource type="Script" uid="uid://clj60e2ih260a" path="res://scripts/character_sprite.gd" id="1_kciyk"]
 
 [node name="CharacterSprite" type="Node2D" unique_id=678368030]
+script = ExtResource("1_kciyk")
 
 [node name="Character" type="Sprite2D" parent="." unique_id=679156401]
 position = Vector2(568, 344)

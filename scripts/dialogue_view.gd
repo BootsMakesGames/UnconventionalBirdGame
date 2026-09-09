@@ -9,7 +9,6 @@ var current_line : int
 const FIRST_LINE = 0
 
 # FROM TUTORIAL
-# TODO: Replace with some kind of READ function
 const TEMP_DIALOGUE : Array[String] = [
 	"Dodo: I've truly become a silly little guy lately.",
 	"Dodo: I'm the king of water cup city!",
@@ -24,7 +23,7 @@ func _ready() -> void:
 	current_line = FIRST_LINE
 	process_current_line() 
 
-func _input(event: InputEvent) -> void:
+func _input(event):
 	if event.is_action_pressed("next_line"):
 		if current_line < len(TEMP_DIALOGUE) -1:
 			current_line += 1
@@ -36,6 +35,8 @@ func _input(event: InputEvent) -> void:
 	else:
 		pass
 
+# FROM TUTORIAL
+# TODO: Replace with some kind of READ function
 func parse_line(line: String):
 	var line_info = line.split(":")
 	assert(len(line_info) >= 2)
@@ -43,9 +44,8 @@ func parse_line(line: String):
 		"speaker_name": line_info[0],
 		"dialogue_text": line_info[1]
 	}
-	
 func process_current_line():
 	var line = TEMP_DIALOGUE[current_line]
 	var line_info = parse_line(line)
-	textbox.speaker_name.text = line_info["speaker_name"]
-	textbox.dialogue_text.text = line_info["dialogue_text"]
+	textbox.change_line(line_info["speaker_name"], line_info["dialogue_text"])
+	character.change_character()
