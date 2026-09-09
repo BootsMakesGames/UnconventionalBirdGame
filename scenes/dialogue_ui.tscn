@@ -39,6 +39,7 @@ theme = SubResource("Theme_6q285")
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 31
 text = "Cheep cheep! I'm saying funny bird things!"
+scroll_active = false
 
 [node name="NameBox" type="PanelContainer" parent="." unique_id=1710014544]
 layout_mode = 0

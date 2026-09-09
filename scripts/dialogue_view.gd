@@ -18,20 +18,29 @@ const TEMP_DIALOGUE : Array[String] = [
 ]
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _ready():
+	# Connect signals
+	textbox.animation_finished.connect(_on_text_animation_finished)
+	
 	# Process first line of dialogue
 	current_line = FIRST_LINE
 	process_current_line() 
 
 func _input(event):
 	if event.is_action_pressed("next_line"):
-		if current_line < len(TEMP_DIALOGUE) -1:
-			current_line += 1
-			process_current_line()
+		if textbox.animate_text:
+			textbox.skip_text_animation()
+		else:
+			if current_line < len(TEMP_DIALOGUE) -1:
+				current_line += 1
+				process_current_line()
 	elif event.is_action_pressed("prev_line"):
-		if current_line > FIRST_LINE:
-			current_line -= 1
-			process_current_line()
+		if textbox.animate_text:
+			textbox.skip_text_animation()
+		else:
+			if current_line > FIRST_LINE:
+				current_line -= 1
+				process_current_line()
 	else:
 		pass
 
@@ -49,3 +58,6 @@ func process_current_line():
 	var line_info = parse_line(line)
 	textbox.change_line(line_info["speaker_name"], line_info["dialogue_text"])
 	character.change_character()
+	
+func _on_text_animation_finished():
+	pass
