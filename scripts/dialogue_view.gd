@@ -9,6 +9,7 @@ var current_line : int
 const FIRST_LINE = 0
 
 # FROM TUTORIAL
+# Temporary dialogue for debugging
 const TEMP_DIALOGUE : Array[String] = [
 	"Dodo: I've truly become a silly little guy lately.",
 	"Dodo: I'm the king of water cup city!",
@@ -17,7 +18,7 @@ const TEMP_DIALOGUE : Array[String] = [
 	"Dodo: By <i>the bird</i> I mean me."
 ]
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	# Connect signals
 	textbox.animation_finished.connect(_on_text_animation_finished)
@@ -27,6 +28,7 @@ func _ready():
 	process_current_line() 
 
 func _input(event):
+	# Handles switching between lines of dialogue
 	if event.is_action_pressed("next_line"):
 		if textbox.animate_text:
 			textbox.skip_text_animation()

@@ -1,20 +1,24 @@
 extends Control
 
-signal animation_finished
-
+# Ready UI elements
 @onready var dialogue = $DialogueBox/Dialogue
 @onready var speaker_name = $NameBox/SpeakerName
 
+# Emitted when typewriter effect is completed
+signal animation_finished
+
+# Adjusts text animation speed
 const TYPEWRITER_SPEED : int = 30
+
+# Resets text animation variables
 var animate_text : bool = false
 var current_visible_characters : int = 0
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
+func _ready():
+	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Handles typewriter animation
 func _process(delta):
 	if animate_text:
 		if dialogue.visible_ratio < 1:
@@ -23,20 +27,21 @@ func _process(delta):
 		else: 
 			animate_text = false
 			animation_finished.emit
-			
 
+# Called when moving to the next line of dialogue; resets text animation
 func change_line(speaker: String, line: String):
 	speaker_name.text = speaker
 	current_visible_characters = 0
 	dialogue.text = line
 	dialogue.visible_characters = 0
 	animate_text = true
-	
+
+# Immediately reveals all text
 func skip_text_animation():
 	dialogue.visible_ratio = 1
 
-func _on_next_arrow_pressed() -> void:
-	pass # Replace with function body.
-
-func _on_prev_arrow_pressed() -> void:
-	pass # Replace with function body.
+#TODO: View next/previous line of dialogue
+func _on_next_arrow_pressed():
+	pass
+func _on_prev_arrow_pressed():
+	pass
