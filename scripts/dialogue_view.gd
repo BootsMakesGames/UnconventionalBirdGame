@@ -15,7 +15,7 @@ const TEMP_DIALOGUE : Array[String] = [
 	"Dodo: I'm the king of water cup city!",
 	"Dodo: Productivity does not determine my worth.",
 	"Dodo: The bird was touched by the gods themselves.",
-	"Dodo: By <i>the bird</i> I mean me."
+	"Dodo: By the bird I mean me."
 ]
 
 
