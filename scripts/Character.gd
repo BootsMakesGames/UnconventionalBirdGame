@@ -13,7 +13,8 @@ const CHARACTER_DETAILS: Dictionary = {
 		"sprite": preload("res://scenes/character_sprite.tscn"),
 		"affinity_points": 0,
 		"gift1": "telescope",
-		"gift2": "funny_hat"
+		"gift2": "funny_hat",
+		"current_line": 0
 	}
 }
 

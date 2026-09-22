@@ -3,6 +3,11 @@
 [ext_resource type="Script" uid="uid://cikwwjue34ufi" path="res://scripts/dialogue_ui.gd" id="1_6q285"]
 [ext_resource type="Texture2D" uid="uid://buiqh0o5eghoj" path="res://placeholder_art/placeholder_sprite_app-portrait.png" id="1_dwk8m"]
 
+[sub_resource type="Theme" id="Theme_jx1sv"]
+default_font_size = 35
+
+[sub_resource type="Theme" id="Theme_e6usr"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwk8m"]
 content_margin_left = 88.0
 content_margin_top = 10.0
@@ -26,6 +31,37 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6q285")
+
+[node name="ChoicesBox" type="CenterContainer" parent="." unique_id=861466298]
+layout_mode = 1
+offset_left = 576.0
+offset_top = 304.0
+offset_right = 576.0
+offset_bottom = 304.0
+theme = SubResource("Theme_jx1sv")
+use_top_left = true
+
+[node name="Choices" type="VBoxContainer" parent="ChoicesBox" unique_id=543618805]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Option1" type="Button" parent="ChoicesBox/Choices" unique_id=222828387]
+custom_minimum_size = Vector2(950, 0)
+layout_mode = 2
+theme = SubResource("Theme_e6usr")
+text = "This is the first choice option."
+
+[node name="Option2" type="Button" parent="ChoicesBox/Choices" unique_id=1663262088]
+custom_minimum_size = Vector2(950, 0)
+layout_mode = 2
+theme = SubResource("Theme_e6usr")
+text = "This is the second choice option."
+
+[node name="Option3" type="Button" parent="ChoicesBox/Choices" unique_id=1666631002]
+custom_minimum_size = Vector2(950, 0)
+layout_mode = 2
+theme = SubResource("Theme_e6usr")
+text = "This is the third choice option."
 
 [node name="DialogueBox" type="PanelContainer" parent="." unique_id=790572365]
 layout_mode = 0

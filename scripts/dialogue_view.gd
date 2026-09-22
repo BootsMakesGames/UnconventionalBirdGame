@@ -8,24 +8,20 @@ extends Node2D
 var current_line : int
 const FIRST_LINE = 0
 
-# FROM TUTORIAL
-# Temporary dialogue for debugging
-const dialogue_lines : Array[String] = [
-	"Dodo: I've truly become a silly little guy lately.",
-	"Dodo: I'm the king of water cup city!",
-	"Dodo: Productivity does not determine my worth.",
-	"Dodo: The bird was touched by the gods themselves.",
-	"Dodo: By the bird I mean me."
-]
+# Store dialogue lines for scene
+var dialogue_lines : Array = []
 
 
 func _ready():
+	dialogue_lines = load_character_dialogue("dodo")
+	
 	# Connect signals
 	textbox.animation_finished.connect(_on_text_animation_finished)
 	
 	# Process first line of dialogue
 	current_line = FIRST_LINE
 	process_current_line() 
+	
 
 func _input(event):
 	# Handles switching between lines of dialogue
