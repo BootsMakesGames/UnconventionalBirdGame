@@ -11,7 +11,9 @@ const CHARACTER_DETAILS: Dictionary = {
 		"name": "Dodo",
 		"species": "Dodo",
 		"sprite": preload("res://scenes/character_sprite.tscn"),
-		"affinity_points": 0
+		"affinity_points": 0,
+		"gift1": "telescope",
+		"gift2": "funny_hat"
 	}
 }
 

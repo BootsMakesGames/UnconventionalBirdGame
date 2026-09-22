@@ -10,7 +10,7 @@ const FIRST_LINE = 0
 
 # FROM TUTORIAL
 # Temporary dialogue for debugging
-const TEMP_DIALOGUE : Array[String] = [
+const dialogue_lines : Array[String] = [
 	"Dodo: I've truly become a silly little guy lately.",
 	"Dodo: I'm the king of water cup city!",
 	"Dodo: Productivity does not determine my worth.",
@@ -33,7 +33,7 @@ func _input(event):
 		if textbox.animate_text:
 			textbox.skip_text_animation()
 		else:
-			if current_line < len(TEMP_DIALOGUE) -1:
+			if current_line < len(dialogue_lines) -1:
 				current_line += 1
 				process_current_line()
 	elif event.is_action_pressed("prev_line"):
@@ -56,10 +56,26 @@ func parse_line(line: String):
 		"dialogue_text": line_info[1]
 	}
 func process_current_line():
-	var line = TEMP_DIALOGUE[current_line]
+	var line = dialogue_lines[current_line]
 	var line_info = parse_line(line)
 	textbox.change_line(line_info["speaker_name"], line_info["dialogue_text"])
 	character.change_character()
 	
 func _on_text_animation_finished():
 	pass
+	
+# Read text data from json files
+func readJSON(json_file_path):
+	var file = FileAccess.open(json_file_path, FileAccess.READ)
+	var filetext = file.get_as_text()
+	var filecontent = JSON.parse_string(filetext)
+	return filecontent
+	
+# Load character dialogue from file
+func load_character_dialogue(filename):
+	var character_dialogue = {}
+	var character_file = str("res://json_files/character_dialogue/" + filename + ".json")
+	for file in DirAccess.get_files_at("res://json_files/character_dialogue/"):
+		if file.get_file() == str(filename + ".json"):  
+			character_dialogue = readJSON(character_file)
+	return character_dialogue
