@@ -33,6 +33,7 @@ grow_vertical = 2
 script = ExtResource("1_6q285")
 
 [node name="ChoicesBox" type="CenterContainer" parent="." unique_id=861466298]
+visible = false
 layout_mode = 1
 offset_left = 576.0
 offset_top = 304.0

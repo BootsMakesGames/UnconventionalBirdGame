@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3bn53a3y7j34"
-path="res://.godot/imported/placeholder_sprite_distressed.png-a7ab66b3475463ef26596f9ad2db7ec4.ctex"
+uid="uid://b65utuc30ua73"
+path="res://.godot/imported/placeholder_sprite_happy2.png-1610bb640569b98a08d588d221247e0b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://placeholder_art/placeholder_sprite_distressed.png"
-dest_files=["res://.godot/imported/placeholder_sprite_distressed.png-a7ab66b3475463ef26596f9ad2db7ec4.ctex"]
+source_file="res://placeholder_art/dodo_sprite/placeholder_sprite_happy2.png"
+dest_files=["res://.godot/imported/placeholder_sprite_happy2.png-1610bb640569b98a08d588d221247e0b.ctex"]
 
 [params]
 

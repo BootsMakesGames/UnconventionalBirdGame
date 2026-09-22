@@ -13,6 +13,7 @@ var dialogue_lines : Array = []
 
 
 func _ready():
+	# Set character dialogue
 	dialogue_lines = load_character_dialogue("dodo")
 	
 	# Connect signals
