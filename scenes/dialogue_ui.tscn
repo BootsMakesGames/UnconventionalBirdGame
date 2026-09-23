@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://exwxfsegr6m1" path="res://scenes/dialogue_option.tscn" id="2_jx1sv"]
 
 [sub_resource type="Theme" id="Theme_jx1sv"]
-default_font_size = 35
+default_font_size = 45
 
 [sub_resource type="Theme" id="Theme_e6usr"]
 
@@ -34,16 +34,17 @@ grow_vertical = 2
 script = ExtResource("1_6q285")
 
 [node name="ChoicesBox" type="CenterContainer" parent="." unique_id=861466298]
-layout_mode = 1
-offset_left = 576.0
-offset_top = 304.0
-offset_right = 576.0
-offset_bottom = 304.0
+layout_mode = 0
+offset_left = 992.0
+offset_top = 528.0
+offset_right = 992.0
+offset_bottom = 528.0
 theme = SubResource("Theme_jx1sv")
 use_top_left = true
 
 [node name="ChoiceOptions" type="VBoxContainer" parent="ChoicesBox" unique_id=543618805]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(1500, 0)
 layout_mode = 2
 theme_override_constants/separation = 20
 
@@ -64,30 +65,30 @@ text = "This is the third choice option."
 
 [node name="DialogueBox" type="PanelContainer" parent="." unique_id=790572365]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 472.0
-offset_right = 1144.0
-offset_bottom = 640.0
+offset_left = 16.0
+offset_top = 768.0
+offset_right = 1904.0
+offset_bottom = 1072.0
 theme = SubResource("Theme_6q285")
 
 [node name="Dialogue" type="RichTextLabel" parent="DialogueBox" unique_id=1335971535]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 31
+theme_override_font_sizes/normal_font_size = 45
 text = "Cheep cheep! I'm saying funny bird things!"
 scroll_active = false
 
 [node name="NameBox" type="PanelContainer" parent="." unique_id=1710014544]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 408.0
-offset_right = 384.0
-offset_bottom = 472.0
+offset_left = 16.0
+offset_top = 680.0
+offset_right = 576.0
+offset_bottom = 768.0
 theme = SubResource("Theme_dwk8m")
 theme_override_styles/panel = SubResource("StyleBoxFlat_6q285")
 
 [node name="SpeakerName" type="Label" parent="NameBox" unique_id=314217006]
 layout_mode = 2
-theme_override_font_sizes/font_size = 38
+theme_override_font_sizes/font_size = 50
 text = "Bird Name"
 horizontal_alignment = 1
 

@@ -8,10 +8,15 @@
 [node name="VNScene" type="Node2D" unique_id=476728579]
 script = ExtResource("1_b7lcb")
 
-[node name="Background2D" type="TextureRect" parent="." unique_id=852708096]
-offset_top = -45.0
-offset_right = 1151.0
-offset_bottom = 650.0
+[node name="BG" type="CanvasLayer" parent="." unique_id=1778281194]
+layer = -1
+
+[node name="Background2D" type="TextureRect" parent="BG" unique_id=852708096]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_imvkc")
 expand_mode = 1
 
@@ -25,3 +30,4 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+size_flags_vertical = 8
