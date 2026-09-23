@@ -44,19 +44,12 @@ func _input(event):
 		pass
 
 # FROM TUTORIAL
-# TODO: Replace with some kind of READ function
-func parse_line(line: String):
-	var line_info = line.split(":")
-	assert(len(line_info) >= 2)
-	return {
-		"speaker_name": line_info[0],
-		"dialogue_text": line_info[1]
-	}
+
 func process_current_line():
 	var line = dialogue_lines[current_line]
-	#var line_info = parse_line(line)
-	textbox.change_line(line["speaker"], line["text"])
-	character.change_character(line["speaker"], line["feeling"])
+	var character_name = Character.get_enum_from_string(line["speaker"])
+	textbox.change_line(character_name, line["text"])
+	character.change_character(character_name)
 	
 func _on_text_animation_finished():
 	character.play_idle_animation()

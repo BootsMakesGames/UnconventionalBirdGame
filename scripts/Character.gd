@@ -3,6 +3,7 @@ extends Node
 
 ## FROM TUTORIAL ##
 enum Name {
+	PLAYER,
 	DODO,
 	DODONT
 }
@@ -24,6 +25,14 @@ const CHARACTER_DETAILS: Dictionary = {
 		"gift1": "telescope",
 		"gift2": "funny_hat",
 		"current_line": 0},
+	Name.PLAYER: {
+		"name": "Player",
+		"species": "Human",
+		"sprite": null,
+		"affinity_points": null,
+		"gift1": null,
+		"gift2": null,
+		"current_line": null},
 }
 
 static func get_enum_from_string(string_value: String) -> int:
