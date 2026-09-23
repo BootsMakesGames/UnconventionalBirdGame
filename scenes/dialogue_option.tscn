@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://exwxfsegr6m1"]
+
+[sub_resource type="Theme" id="Theme_e6usr"]
+
+[node name="ChoiceButton" type="Button" unique_id=1074826364]
+custom_minimum_size = Vector2(950, 0)
+theme = SubResource("Theme_e6usr")
+text = "This is the first choice option."

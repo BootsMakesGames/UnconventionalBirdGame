@@ -3,6 +3,10 @@ extends Control
 # Ready UI elements
 @onready var dialogue = $DialogueBox/Dialogue
 @onready var speaker_name = $NameBox/SpeakerName
+@onready var choice_options = %ChoiceOptions
+
+# Preload dialogue button scene
+const DIALOGUE_OPTIONS = preload("res://scenes/dialogue_option.tscn")
 
 # Emitted when typewriter effect is completed
 signal animation_finished
@@ -16,7 +20,8 @@ var current_visible_characters : int = 0
 
 
 func _ready():
-	pass
+# Start with dialogue options not visible
+	choice_options.hide()
 
 # Handles typewriter animation
 func _process(delta):
@@ -39,6 +44,14 @@ func change_line(speaker: String, line: String):
 # Immediately reveals all text
 func skip_text_animation():
 	dialogue.visible_ratio = 1
+
+# Create & show dialogue options buttons
+func display_choices(choices: Array):
+	for choice in choices:
+		var choice_button = DIALOGUE_OPTIONS.instantiate()
+		choice_button.text = choice["text"]
+		choice_options.add_child(choice_button)
+	choice_options.show()
 
 #TODO: View next/previous line of dialogue
 func _on_next_arrow_pressed():

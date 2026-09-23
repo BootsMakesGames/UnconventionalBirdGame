@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cikwwjue34ufi" path="res://scripts/dialogue_ui.gd" id="1_6q285"]
 [ext_resource type="Texture2D" uid="uid://buiqh0o5eghoj" path="res://placeholder_art/placeholder_sprite_app-portrait.png" id="1_dwk8m"]
+[ext_resource type="PackedScene" uid="uid://exwxfsegr6m1" path="res://scenes/dialogue_option.tscn" id="2_jx1sv"]
 
 [sub_resource type="Theme" id="Theme_jx1sv"]
 default_font_size = 35
@@ -33,7 +34,6 @@ grow_vertical = 2
 script = ExtResource("1_6q285")
 
 [node name="ChoicesBox" type="CenterContainer" parent="." unique_id=861466298]
-visible = false
 layout_mode = 1
 offset_left = 576.0
 offset_top = 304.0
@@ -42,23 +42,21 @@ offset_bottom = 304.0
 theme = SubResource("Theme_jx1sv")
 use_top_left = true
 
-[node name="Choices" type="VBoxContainer" parent="ChoicesBox" unique_id=543618805]
+[node name="ChoiceOptions" type="VBoxContainer" parent="ChoicesBox" unique_id=543618805]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Option1" type="Button" parent="ChoicesBox/Choices" unique_id=222828387]
-custom_minimum_size = Vector2(950, 0)
+[node name="Option1" parent="ChoicesBox/ChoiceOptions" unique_id=1074826364 instance=ExtResource("2_jx1sv")]
 layout_mode = 2
-theme = SubResource("Theme_e6usr")
-text = "This is the first choice option."
 
-[node name="Option2" type="Button" parent="ChoicesBox/Choices" unique_id=1663262088]
+[node name="Option2" type="Button" parent="ChoicesBox/ChoiceOptions" unique_id=1663262088]
 custom_minimum_size = Vector2(950, 0)
 layout_mode = 2
 theme = SubResource("Theme_e6usr")
 text = "This is the second choice option."
 
-[node name="Option3" type="Button" parent="ChoicesBox/Choices" unique_id=1666631002]
+[node name="Option3" type="Button" parent="ChoicesBox/ChoiceOptions" unique_id=1666631002]
 custom_minimum_size = Vector2(950, 0)
 layout_mode = 2
 theme = SubResource("Theme_e6usr")
