@@ -59,7 +59,7 @@ func process_current_line():
 	character.change_character()
 	
 func _on_text_animation_finished():
-	pass
+	character.play_idle_animation()
 	
 # Read text data from json files
 func readJSON(json_file_path):
