@@ -14,17 +14,13 @@ func _ready():
 	pass
 
 # Change between characters & emotions
-func change_character(character_name: String, is_talking: bool, emotion: String):
-	animated_sprite.sprite_frames = CHARACTER_FRAMES[character_name]
-	if character_name == "Player":
-		play_idle_animation()
-	elif !is_talking:
-		play_idle_animation()
-	else:
+func change_character(character_name: String, emotion: String, is_talking: bool = true):
+	if character_name in Character.Name:
+		animated_sprite.sprite_frames = Character.CHARACTER_DETAILS[character_name]
 		if emotion in EMOTIONS_LIST:
 			animated_sprite.play(emotion)
-		else: 
-			play_idle_animation()
+	else: 
+		play_idle_animation()
 
 func play_idle_animation():
 	animated_sprite.play("idle")

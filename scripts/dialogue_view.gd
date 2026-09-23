@@ -54,9 +54,9 @@ func parse_line(line: String):
 	}
 func process_current_line():
 	var line = dialogue_lines[current_line]
-	var line_info = parse_line(line)
-	textbox.change_line(line_info["speaker_name"], line_info["dialogue_text"])
-	character.change_character()
+	#var line_info = parse_line(line)
+	textbox.change_line(line["speaker"], line["text"])
+	character.change_character(line["speaker"], line["feeling"])
 	
 func _on_text_animation_finished():
 	character.play_idle_animation()

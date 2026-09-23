@@ -3,19 +3,27 @@ extends Node
 
 ## FROM TUTORIAL ##
 enum Name {
-	DODO
+	DODO,
+	DODONT
 }
 
 const CHARACTER_DETAILS: Dictionary = {
 	Name.DODO: {
 		"name": "Dodo",
 		"species": "Dodo",
-		"sprite": preload("res://scenes/character_sprite.tscn"),
+		"sprite": preload("res://sprites/aanimations/dodo_sprites.tres"),
 		"affinity_points": 0,
 		"gift1": "telescope",
 		"gift2": "funny_hat",
-		"current_line": 0
-	}
+		"current_line": 0},
+	Name.DODONT: {
+		"name": "Dodon't",
+		"species": "Dodo",
+		"sprite": preload("res://sprites/aanimations/dodont_sprites.tres"),
+		"affinity_points": 0,
+		"gift1": "telescope",
+		"gift2": "funny_hat",
+		"current_line": 0},
 }
 
 static func get_enum_from_string(string_value: String) -> int:
