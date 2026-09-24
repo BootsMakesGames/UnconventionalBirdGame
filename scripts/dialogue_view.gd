@@ -17,7 +17,7 @@ func _ready():
 	dialogue_lines = load_character_dialogue("dodo")
 	
 	# Connect signals
-	textbox.animation_finished.connect(_on_text_animation_finished)
+	textbox.text_animation_finished.connect(_on_text_animation_finished)
 	
 	# Process first line of dialogue
 	current_line = FIRST_LINE
@@ -43,14 +43,33 @@ func _input(event):
 	else:
 		pass
 
-# FROM TUTORIAL
-
+# Update current line of text
 func process_current_line():
 	var line = dialogue_lines[current_line]
+	
+	if line.has("goto"):
+		current_line = get_anchor_location(line["goto"])
+		process_current_line()
+		return
+	
+	if line.has("anchor"):
+		current_line += 1
+		process_current_line()
+		return
+	
 	var character_name = Character.get_enum_from_string(line["speaker"])
 	textbox.change_line(character_name, line["text"])
 	character.change_character(character_name)
-	
+
+# Get line index of desired anchor
+func get_anchor_location(anchor: String):
+	for i in range(dialogue_lines.size()):
+		if dialogue_lines[i].has("anchor") and dialogue_lines[i]["anchor"] == anchor:
+			return i
+	printerr("Error: Could not find anchor '" + anchor + "'")
+	return null
+
+# TODO: Stop speaking animation when text is fully visible
 func _on_text_animation_finished():
 	character.play_idle_animation()
 	

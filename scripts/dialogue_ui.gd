@@ -9,7 +9,7 @@ extends Control
 const DIALOGUE_OPTIONS = preload("res://scenes/dialogue_option.tscn")
 
 # Emitted when typewriter effect is completed
-signal animation_finished
+signal text_animation_finished
 
 # Adjusts text animation speed
 const TYPEWRITER_SPEED : int = 30
@@ -31,7 +31,7 @@ func _process(delta):
 			current_visible_characters = dialogue.visible_characters
 		else: 
 			animate_text = false
-			animation_finished.emit
+			text_animation_finished.emit
 
 # Called when moving to the next line of dialogue; resets text animation
 func change_line(character_name: Character.Name, line: String):

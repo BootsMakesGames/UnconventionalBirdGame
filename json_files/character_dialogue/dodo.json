@@ -2,6 +2,8 @@
 	{"speaker": "Dodo", "text": "I've truly become a silly little guy lately."},
 	{"speaker": "Dodo", "text": "I'm the king of water cup city!"},
 	{"speaker": "Dodo", "text": "Productivity does not determine my worth."},
+	{"goto": "dodont_appears"},
+	{"anchor": "dodont_appears"},
 	{"speaker": "Dodont", "text": "The bird was touched by the gods themselves."},
 	{"speaker": "Dodo", "text": "By the bird he means me."}
 ]

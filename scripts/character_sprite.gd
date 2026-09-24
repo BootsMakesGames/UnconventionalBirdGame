@@ -16,6 +16,8 @@ func change_character(character_name: Character.Name, is_talking: bool = true):
 			animated_sprite.play("happy")
 #			if emotion in EMOTIONS_LIST:
 #				animated_sprite.play(emotion)
+		else: 
+			play_idle_animation()
 	else: 
 		play_idle_animation()
 
