@@ -1,9 +1,25 @@
 [
 	{"speaker": "Dodo", "text": "I've truly become a silly little guy lately."},
 	{"speaker": "Dodo", "text": "I'm the king of water cup city!"},
+	{"choices":
+		[
+			{"text": "Are you, really?", "goto": "first_choice"},
+			{"text": "And it looks like I'm the queen.", "goto": "second_choice"}
+		]
+	},
+	{"speaker": "Dodont", "text": "Skip this."},
 	{"speaker": "Dodo", "text": "Productivity does not determine my worth."},
-	{"goto": "dodont_appears"},
-	{"anchor": "dodont_appears"},
+	
+	{"anchor": "first_choice"},
 	{"speaker": "Dodont", "text": "The bird was touched by the gods themselves."},
-	{"speaker": "Dodo", "text": "By the bird he means me."}
+	{"speaker": "Dodo", "text": "By the bird he means me."},
+	{"goto": "next_section"},
+	
+	{"anchor": "second_choice"},
+	{"speaker": "dodont", "text": "So you are."},
+	{"speaker": "dodo", "text": "That's me! Hey, that's me!"},
+	{"goto": "next_section"},
+	
+	{"anchor": "next_section"},
+	{"speaker": "dodont", "text": "Yes, it's you."}
 ]

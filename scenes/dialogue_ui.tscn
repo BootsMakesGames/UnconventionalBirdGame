@@ -7,8 +7,6 @@
 [sub_resource type="Theme" id="Theme_jx1sv"]
 default_font_size = 45
 
-[sub_resource type="Theme" id="Theme_e6usr"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwk8m"]
 content_margin_left = 88.0
 content_margin_top = 10.0
@@ -48,20 +46,8 @@ custom_minimum_size = Vector2(1500, 0)
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Option1" parent="ChoicesBox/ChoiceOptions" unique_id=1074826364 instance=ExtResource("2_jx1sv")]
+[node name="Option" parent="ChoicesBox/ChoiceOptions" unique_id=1074826364 instance=ExtResource("2_jx1sv")]
 layout_mode = 2
-
-[node name="Option2" type="Button" parent="ChoicesBox/ChoiceOptions" unique_id=1663262088]
-custom_minimum_size = Vector2(950, 0)
-layout_mode = 2
-theme = SubResource("Theme_e6usr")
-text = "This is the second choice option."
-
-[node name="Option3" type="Button" parent="ChoicesBox/ChoiceOptions" unique_id=1666631002]
-custom_minimum_size = Vector2(950, 0)
-layout_mode = 2
-theme = SubResource("Theme_e6usr")
-text = "This is the third choice option."
 
 [node name="DialogueBox" type="PanelContainer" parent="." unique_id=790572365]
 layout_mode = 0
@@ -117,5 +103,6 @@ texture_normal = ExtResource("1_dwk8m")
 ignore_texture_size = true
 stretch_mode = 0
 
+[connection signal="pressed" from="ChoicesBox/ChoiceOptions/Option" to="." method="_on_option_pressed" binds= ["anchor"]]
 [connection signal="pressed" from="NextArrow" to="." method="_on_next_arrow_pressed"]
 [connection signal="pressed" from="PrevArrow" to="." method="_on_prev_arrow_pressed"]

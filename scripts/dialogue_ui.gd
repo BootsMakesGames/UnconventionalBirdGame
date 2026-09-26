@@ -10,6 +10,8 @@ const DIALOGUE_OPTIONS = preload("res://scenes/dialogue_option.tscn")
 
 # Emitted when typewriter effect is completed
 signal text_animation_finished
+# Emitted when dialogue option button pressed
+signal choice_selected
 
 # Adjusts text animation speed
 const TYPEWRITER_SPEED : int = 30
@@ -31,7 +33,7 @@ func _process(delta):
 			current_visible_characters = dialogue.visible_characters
 		else: 
 			animate_text = false
-			text_animation_finished.emit
+			text_animation_finished.emit()
 
 # Called when moving to the next line of dialogue; resets text animation
 func change_line(character_name: Character.Name, line: String):
@@ -47,11 +49,21 @@ func skip_text_animation():
 
 # Create & show dialogue options buttons
 func display_choices(choices: Array):
+	# Clear previous choices
+	for child in choice_options.get_children():
+		child.queue_free()
+	# Create & assign UI buttons for current choices
 	for choice in choices:
 		var choice_button = DIALOGUE_OPTIONS.instantiate()
 		choice_button.text = choice["text"]
+		choice_button.pressed.connect(_on_option_pressed.bind(choice["goto"]))
 		choice_options.add_child(choice_button)
 	choice_options.show()
+
+# Emit signal when dialogue option is selected
+func _on_option_pressed(anchor: String):
+	choice_selected.emit(anchor)
+	choice_options.hide()
 
 #TODO: View next/previous line of dialogue
 func _on_next_arrow_pressed():

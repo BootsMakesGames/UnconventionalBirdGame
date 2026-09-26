@@ -2,7 +2,7 @@ extends Node2D
 
 # Ready UI elements
 @onready var character = %CharacterSprite
-@onready var textbox = %DialogueUI
+@onready var dialogue_ui = %DialogueUI
 
 # Set current dialogue line to 0
 var current_line : int
@@ -17,7 +17,8 @@ func _ready():
 	dialogue_lines = load_character_dialogue("dodo")
 	
 	# Connect signals
-	textbox.text_animation_finished.connect(_on_text_animation_finished)
+	dialogue_ui.text_animation_finished.connect(_on_text_animation_finished)
+	dialogue_ui.choice_selected.connect(_on_choice_selected)
 	
 	# Process first line of dialogue
 	current_line = FIRST_LINE
@@ -26,16 +27,18 @@ func _ready():
 
 func _input(event):
 	# Handles switching between lines of dialogue
-	if event.is_action_pressed("next_line"):
-		if textbox.animate_text:
-			textbox.skip_text_animation()
+	var line = dialogue_lines[current_line]
+	var has_choices = line.has("choices")
+	if event.is_action_pressed("next_line") and not has_choices:
+		if dialogue_ui.animate_text:
+			dialogue_ui.skip_text_animation()
 		else:
 			if current_line < len(dialogue_lines) -1:
 				current_line += 1
 				process_current_line()
 	elif event.is_action_pressed("prev_line"):
-		if textbox.animate_text:
-			textbox.skip_text_animation()
+		if dialogue_ui.animate_text:
+			dialogue_ui.skip_text_animation()
 		else:
 			if current_line > FIRST_LINE:
 				current_line -= 1
@@ -57,9 +60,13 @@ func process_current_line():
 		process_current_line()
 		return
 	
-	var character_name = Character.get_enum_from_string(line["speaker"])
-	textbox.change_line(character_name, line["text"])
-	character.change_character(character_name)
+	if line.has("choices"):
+		dialogue_ui.display_choices(line["choices"])
+	
+	else:
+		var character_name = Character.get_enum_from_string(line["speaker"])
+		dialogue_ui.change_line(character_name, line["text"])
+		character.change_character(character_name)
 
 # Get line index of desired anchor
 func get_anchor_location(anchor: String):
@@ -68,6 +75,10 @@ func get_anchor_location(anchor: String):
 			return i
 	printerr("Error: Could not find anchor '" + anchor + "'")
 	return null
+
+func _on_choice_selected(anchor: String):
+	current_line = get_anchor_location(anchor)
+	process_current_line()
 
 # TODO: Stop speaking animation when text is fully visible
 func _on_text_animation_finished():
