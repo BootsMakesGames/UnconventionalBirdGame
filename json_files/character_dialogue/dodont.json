@@ -1,7 +1,7 @@
 [
-	{"location": "coastline", "music": "none"},
-	{"speaker": "Dodo", "text": "I've truly become a silly little guy lately.", "feeling": "distressed"},
-	{"speaker": "Dodo", "text": "I'm the king of water cup city!", "feeling": "happy"},
+	{"location": "lighthouse", "music": "none"},
+	{"speaker": "Dodont", "text": "I've truly become a silly little guy lately.", "feeling": "distressed"},
+	{"speaker": "Dodont", "text": "I'm the king of water cup city!", "feeling": "happy"},
 	{"choices":
 		[
 			{"text": "Are you, really?", "goto": "first_choice"},
