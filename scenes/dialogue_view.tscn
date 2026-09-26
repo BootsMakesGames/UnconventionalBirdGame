@@ -32,3 +32,5 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 size_flags_vertical = 8
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="." unique_id=1408680708]

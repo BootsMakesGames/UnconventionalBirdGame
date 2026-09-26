@@ -3,6 +3,8 @@ extends Node2D
 # Ready UI elements
 @onready var character = %CharacterSprite
 @onready var dialogue_ui = %DialogueUI
+@onready var background = %Background2D
+@onready var music = $BackgroundMusic
 
 # Set current dialogue line to 0
 var current_line : int
@@ -50,8 +52,13 @@ func _input(event):
 func process_current_line():
 	var line = dialogue_lines[current_line]
 	
-	# Set background to current location
+	# Set background & music for current scene
 	if line.has("location"):
+		var bg_image = "res://placeholder_art/backgrounds/" + line["location"] + ".png"
+		var bg_music = "res://placeholder_art/" + line["music"] + ".mp3"
+		background.texture = load(bg_image)
+		music.stream = load(bg_music)
+		music.play()
 		current_line += 1
 		process_current_line()
 		return

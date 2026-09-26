@@ -1,5 +1,5 @@
 [
-	{"location": "coastline", "music": "none"},
+	{"location": "forest", "music": "coastline_theme"},
 	{"speaker": "Dodo", "text": "I've truly become a silly little guy lately.", "feeling": "distressed"},
 	{"speaker": "Dodo", "text": "I'm the king of water cup city!"},
 	{"choices":
