@@ -50,25 +50,30 @@ func _input(event):
 func process_current_line():
 	var line = dialogue_lines[current_line]
 	
+	# Set background to current location
 	if line.has("location"):
 		current_line += 1
 		process_current_line()
 		return
 	
+	# Jump to specified anchor in dialogue script
 	if line.has("goto"):
 		current_line = get_anchor_location(line["goto"])
 		process_current_line()
 		return
 	
+	# Designate dialogue anchor point
 	if line.has("anchor"):
 		current_line += 1
 		process_current_line()
 		return
 	
+	# Display dialogue choice options
 	if line.has("choices"):
 		dialogue_ui.display_choices(line["choices"])
 	
-	else:
+	# Display line of dialogue & character sprite emotion
+	elif line.has("text"):
 		var character_name = Character.get_enum_from_string(line["speaker"])
 		var emotion
 		if line.has("feeling"):
@@ -77,6 +82,13 @@ func process_current_line():
 			emotion = "happy"
 		dialogue_ui.change_line(character_name, line["text"])
 		character.change_character(character_name, emotion)
+	
+	# Skip & document any lines in script not accounted for in code
+	else:
+		print_debug("Skipped line: " + line)
+		current_line += 1
+		process_current_line()
+		return
 
 # Get line index of desired anchor
 func get_anchor_location(anchor: String):
@@ -86,6 +98,7 @@ func get_anchor_location(anchor: String):
 	printerr("Error: Could not find anchor '" + anchor + "'")
 	return null
 
+# Go to desired anchor when dialogue choice is selected
 func _on_choice_selected(anchor: String):
 	current_line = get_anchor_location(anchor)
 	process_current_line()
