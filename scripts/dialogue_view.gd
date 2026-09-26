@@ -50,6 +50,11 @@ func _input(event):
 func process_current_line():
 	var line = dialogue_lines[current_line]
 	
+	if line.has("location"):
+		current_line += 1
+		process_current_line()
+		return
+	
 	if line.has("goto"):
 		current_line = get_anchor_location(line["goto"])
 		process_current_line()
@@ -65,8 +70,13 @@ func process_current_line():
 	
 	else:
 		var character_name = Character.get_enum_from_string(line["speaker"])
+		var emotion
+		if line.has("feeling"):
+			emotion = line["feeling"]
+		else:
+			emotion = "happy"
 		dialogue_ui.change_line(character_name, line["text"])
-		character.change_character(character_name)
+		character.change_character(character_name, emotion)
 
 # Get line index of desired anchor
 func get_anchor_location(anchor: String):
@@ -80,7 +90,7 @@ func _on_choice_selected(anchor: String):
 	current_line = get_anchor_location(anchor)
 	process_current_line()
 
-# TODO: Stop speaking animation when text is fully visible
+# Stop speaking animation when text is fully visible
 func _on_text_animation_finished():
 	character.play_idle_animation()
 	

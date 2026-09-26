@@ -1,7 +1,7 @@
 [
 	{"location": "coastline", "music": "none"},
 	{"speaker": "Dodo", "text": "I've truly become a silly little guy lately.", "feeling": "distressed"},
-	{"speaker": "Dodo", "text": "I'm the king of water cup city!", "feeling": "happy"},
+	{"speaker": "Dodo", "text": "I'm the king of water cup city!"},
 	{"choices":
 		[
 			{"text": "Are you, really?", "goto": "first_choice"},
@@ -24,6 +24,4 @@
 	{"anchor": "next_section"},
 	{"speaker": "dodont", "text": "Yes, it's you."},
 	
-	{"next_scene": "", "transition": "fade"},
-	{"next_scene": "scene_two"}
 ]

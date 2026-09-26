@@ -11,6 +11,17 @@
 animations = [{
 "frames": [{
 "duration": 1.5,
+"texture": ExtResource("5_u0cil")
+}, {
+"duration": 1.5,
+"texture": ExtResource("6_cvga8")
+}],
+"loop": true,
+"name": &"distressed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.5,
 "texture": ExtResource("1_hp6v0")
 }, {
 "duration": 1.5,
@@ -29,16 +40,5 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.5,
-"texture": ExtResource("5_u0cil")
-}, {
-"duration": 1.5,
-"texture": ExtResource("6_cvga8")
-}],
-"loop": true,
-"name": &"upset",
 "speed": 5.0
 }]
