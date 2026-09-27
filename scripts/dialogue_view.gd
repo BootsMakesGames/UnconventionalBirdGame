@@ -22,6 +22,8 @@ func _ready():
 	# Connect signals
 	dialogue_ui.text_animation_finished.connect(_on_text_animation_finished)
 	dialogue_ui.choice_selected.connect(_on_choice_selected)
+	SceneManager.scene_fade_out_finished.connect(_on_scene_faded_out)
+	SceneManager.scene_fade_in_finished.connect(_on_scene_faded_in)
 	
 	# Process first line of dialogue
 	current_line = FIRST_LINE
@@ -51,6 +53,11 @@ func _input(event):
 
 # Update current line of text
 func process_current_line():
+	# Check if current line exists
+	if current_line >= dialogue_lines.size() or current_line < 0:
+		printerr("Current line out of bounds.")
+		return
+		
 	var line = dialogue_lines[current_line]
 	
 	# Set background & music for current scene
@@ -75,7 +82,13 @@ func process_current_line():
 		current_line += 1
 		process_current_line()
 		return
-	
+		
+	# Transition to next scene
+	if line.has("next_scene"):
+		dialogue_file = line["next_scene"] if !line["next_scene"].is_empty() else ""
+		SceneManager._fade_out()
+		return
+		
 	# Display dialogue choice options
 	if line.has("choices"):
 		dialogue_ui.display_choices(line["choices"])
@@ -93,7 +106,7 @@ func process_current_line():
 	
 	# Skip & document any lines in script not accounted for in code
 	else:
-		print_debug("Skipped line: " + line["text"])
+		print_debug("Skipped line: " + line)
 		current_line += 1
 		process_current_line()
 		return
@@ -115,6 +128,15 @@ func _on_choice_selected(anchor: String):
 func _on_text_animation_finished():
 	character.play_idle_animation()
 	
+# Manages scene transitions
+func _on_scene_faded_out():
+	dialogue_lines = load_character_dialogue(dialogue_file)
+	current_line = FIRST_LINE
+	SceneManager._fade_in()
+	
+func _on_scene_faded_in():
+	process_current_line()
+
 # Read text data from json files
 func readJSON(json_file_path):
 	var file = FileAccess.open(json_file_path, FileAccess.READ)

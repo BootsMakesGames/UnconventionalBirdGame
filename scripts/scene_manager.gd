@@ -1,5 +1,9 @@
 extends Node2D
 
+# Signals
+signal scene_fade_in_finished
+signal scene_fade_out_finished
+
 # Variables for scene transition animation(s)
 var transition_layer: CanvasLayer
 var transition_rect: ColorRect
@@ -15,7 +19,7 @@ func _ready():
 	transition_rect.anchor_bottom = 1
 	transition_rect.visible = false
 	transition_layer.add_child(transition_rect)
-	get_tree().root.add_child(transition_layer)
+	get_tree().root.add_child.call_deferred(transition_layer)
 
 # Fade from current scene to transition texture
 func _fade_out():
@@ -26,9 +30,11 @@ func _fade_out():
 	
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(transition_rect, "modulate.a", 1.0, transition_time)
-	await tween.finished
+	tween.tween_property(transition_rect, "modulate:a", 1.0, transition_time)
+#	await tween.finished
 	transition_rect.visible = false
+	tween.tween_callback(func():
+		scene_fade_out_finished.emit())
 
 # Fade from transition texture to next scene
 func _fade_in():
@@ -39,7 +45,8 @@ func _fade_in():
 	
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN)
-	tween.tween_property(transition_rect, "modulate.a", 0, transition_time)
-	await tween.finished
-	
+	tween.tween_property(transition_rect, "modulate:a", 0, transition_time)
+#	await tween.finished
+	tween.tween_callback(func():
+		scene_fade_in_finished.emit())
 	

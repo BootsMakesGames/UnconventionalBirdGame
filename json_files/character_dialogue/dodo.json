@@ -24,5 +24,5 @@
 	{"anchor": "next_section"},
 	{"speaker": "dodont", "text": "Yes, it's you."},
 	
-	{"next scene": "dodont", "transition": "fade"}
+	{"next_scene": "dodont"}
 ]
