@@ -34,3 +34,10 @@ grow_vertical = 1
 size_flags_vertical = 8
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="." unique_id=1408680708]
+unique_name_in_owner = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=634475761]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=2020941177]
+offset_right = 40.0
+offset_bottom = 40.0

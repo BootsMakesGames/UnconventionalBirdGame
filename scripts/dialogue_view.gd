@@ -4,7 +4,7 @@ extends Node2D
 @onready var character = %CharacterSprite
 @onready var dialogue_ui = %DialogueUI
 @onready var background = %Background2D
-@onready var music = $BackgroundMusic
+@onready var music = %BackgroundMusic
 
 # Set current dialogue line to 0
 var current_line : int
@@ -12,11 +12,12 @@ const FIRST_LINE = 0
 
 # Store dialogue lines for scene
 var dialogue_lines : Array = []
+var dialogue_file : String = "dodo"
 
 
 func _ready():
 	# Set character dialogue
-	dialogue_lines = load_character_dialogue("dodo")
+	dialogue_lines = load_character_dialogue(dialogue_file)
 	
 	# Connect signals
 	dialogue_ui.text_animation_finished.connect(_on_text_animation_finished)
@@ -92,7 +93,7 @@ func process_current_line():
 	
 	# Skip & document any lines in script not accounted for in code
 	else:
-		print_debug("Skipped line: " + line)
+		print_debug("Skipped line: " + line["text"])
 		current_line += 1
 		process_current_line()
 		return
