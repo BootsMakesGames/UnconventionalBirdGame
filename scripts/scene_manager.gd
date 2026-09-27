@@ -44,7 +44,7 @@ func _fade_in():
 	transition_rect.visible = true
 	
 	var tween = create_tween()
-	tween.set_ease(Tween.EASE_IN)
+	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(transition_rect, "modulate:a", 0, transition_time)
 #	await tween.finished
 	tween.tween_callback(func():

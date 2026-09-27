@@ -132,7 +132,13 @@ func _on_text_animation_finished():
 func _on_scene_faded_out():
 	dialogue_lines = load_character_dialogue(dialogue_file)
 	current_line = FIRST_LINE
+	var location_check = dialogue_lines[current_line]
+	dialogue_ui.dialogue.visible_characters = 0
 	SceneManager._fade_in()
+	if location_check.has("location"):
+		var bg_image = "res://placeholder_art/backgrounds/" + location_check["location"] + ".png"
+		background.texture = load(bg_image)
+		current_line += 1
 	
 func _on_scene_faded_in():
 	process_current_line()

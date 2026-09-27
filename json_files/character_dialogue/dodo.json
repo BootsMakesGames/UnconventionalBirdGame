@@ -14,15 +14,28 @@
 	{"anchor": "first_choice"},
 	{"speaker": "Dodont", "text": "The bird was touched by the gods themselves."},
 	{"speaker": "Dodo", "text": "By the bird he means me."},
+	{"choices":
+		[
+			{"text": "I'm not sure if he does.", "goto": "not_sure"},
+			{"text": "He sure does!", "goto": "sure"}
+		]
+	},
+	
+	{"anchor": "not_sure"},
+	{"speaker": "dodont", "text": "Oh, I do."},
+	{"goto": "next_section"},
+	
+	{"anchor": "sure"},
+	{"speaker": "dodont", "text": "Yes, I do."},
 	{"goto": "next_section"},
 	
 	{"anchor": "second_choice"},
 	{"speaker": "dodont", "text": "So you are."},
-	{"speaker": "dodo", "text": "That's me! Hey, that's me!", "feeling": "distressed"},
+	{"speaker": "dodo", "text": "That's me! He says that's me!", "feeling": "distressed"},
 	{"goto": "next_section"},
 	
 	{"anchor": "next_section"},
-	{"speaker": "dodont", "text": "Yes, it's you."},
+	{"speaker": "dodont", "text": "I certainly do."},
 	
 	{"next_scene": "dodont"}
 ]
