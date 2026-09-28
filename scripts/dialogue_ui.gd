@@ -35,9 +35,14 @@ func _process(delta):
 			animate_text = false
 			text_animation_finished.emit()
 
-# Called when moving to the next line of dialogue; resets text animation
-func change_line(character_name: Character.Name, line: String):
+# Called when changing speaker
+func change_speaker(character_name: Character.Name):
 	speaker_name.text = Character.CHARACTER_DETAILS[character_name]["name"]
+
+# Called when moving to the next line of dialogue; resets text animation
+#func change_line(character_name: Character.Name, line: String):
+func change_line(line: String):
+	#speaker_name.text = Character.CHARACTER_DETAILS[character_name]["name"]
 	current_visible_characters = 0
 	dialogue.text = line
 	dialogue.visible_characters = 0

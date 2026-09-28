@@ -1,0 +1,58 @@
+[
+	"location: forest",
+	"music: coastline_theme",
+	
+	"character: dodo",
+	"feeling: distressed",
+	"text: I've truly become a silly little guy lately.",
+	"feeling: happy",
+	"text: I'm the king of water cup city!",
+	"jump: skip_to",
+	
+	"text: testing 123",
+	"land: skip_to",
+	"text: I guess that worked!",
+	"next_scene: dodont",
+
+	{"location": "forest", "music": "coastline_theme"},
+	{"speaker": "Dodo", "text": "I've truly become a silly little guy lately.", "feeling": "distressed"},
+	{"speaker": "Dodo", "text": "I'm the king of water cup city!"},
+	{"choices":
+		[
+			{"text": "Are you, really?", "goto": "first_choice"},
+			{"text": "And it looks like I'm the queen.", "goto": "second_choice"}
+		]
+	},
+	{"speaker": "Dodont", "text": "Skip this."},
+	{"speaker": "Dodo", "text": "Productivity does not determine my worth."},
+	
+	
+	
+	{"anchor": "first_choice"},
+	{"speaker": "Dodont", "text": "The bird was touched by the gods themselves."},
+	{"speaker": "Dodo", "text": "By the bird he means me."},
+	{"choices":
+		[
+			{"text": "I'm not sure if he does.", "goto": "not_sure"},
+			{"text": "He sure does!", "goto": "sure"}
+		]
+	},
+	
+	{"anchor": "not_sure"},
+	{"speaker": "dodont", "text": "Oh, I do."},
+	{"goto": "next_section"},
+	
+	{"anchor": "sure"},
+	{"speaker": "dodont", "text": "Yes, I do."},
+	{"goto": "next_section"},
+	
+	{"anchor": "second_choice"},
+	{"speaker": "dodont", "text": "So you are."},
+	{"speaker": "dodo", "text": "That's me! He says that's me!", "feeling": "distressed"},
+	{"goto": "next_section"},
+	
+	{"anchor": "next_section"},
+	{"speaker": "dodont", "text": "I certainly do."},
+	
+	{"next_scene": "dodont"}
+]

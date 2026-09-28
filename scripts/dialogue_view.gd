@@ -4,7 +4,7 @@ extends Node2D
 @onready var character = %CharacterSprite
 @onready var dialogue_ui = %DialogueUI
 @onready var background = %Background2D
-@onready var music = %BackgroundMusic
+@onready var music_player = %BackgroundMusic
 
 # Set current dialogue line to 0
 var current_line : int
@@ -12,7 +12,13 @@ const FIRST_LINE = 0
 
 # Store dialogue lines for scene
 var dialogue_lines : Array = []
-var dialogue_file : String = "dodo"
+var dialogue_file : String = "simple_script"
+var speaker 
+var current_emotion
+
+# Store background image & background music
+var location : String 
+var music : String 
 
 
 func _ready():
@@ -32,7 +38,7 @@ func _ready():
 
 func _input(event):
 	# Handles switching between lines of dialogue
-	var line = dialogue_lines[current_line]
+	var line = parse_line(dialogue_lines[current_line])
 	var has_choices = line.has("choices")
 	if event.is_action_pressed("next_line") and not has_choices:
 		if dialogue_ui.animate_text:
@@ -51,77 +57,109 @@ func _input(event):
 	else:
 		pass
 
+# Parse string into dictionary
+func parse_line(line: String):
+	var line_info = line.split(":")
+	assert(len(line_info) >= 2)
+	var clean_line_info = line_info[1].lstrip(' ')
+	line_info[1] = clean_line_info
+	return line_info
+
 # Update current line of text
 func process_current_line():
 	# Check if current line exists
 	if current_line >= dialogue_lines.size() or current_line < 0:
 		printerr("Current line out of bounds.")
 		return
-		
-	var line = dialogue_lines[current_line]
 	
-	# Set background & music for current scene
-	if line.has("location"):
-		var bg_image = "res://placeholder_art/backgrounds/" + line["location"] + ".png"
-		var bg_music = "res://placeholder_art/" + line["music"] + ".mp3"
+	var line = parse_line(dialogue_lines[current_line])
+	print_debug(line)
+	
+	# Set background image for current scene
+	if line[0] == "location":
+		location = line[1]
+		var bg_image = "res://placeholder_art/backgrounds/" + location + ".png"
 		background.texture = load(bg_image)
-		music.stream = load(bg_music)
-		music.play()
+		current_line += 1
+		process_current_line()
+		return
+	
+	# Set music for current scene
+	if line[0] == "music":
+		music = line[1]
+		var bg_music = "res://placeholder_art/" + music + ".mp3"
+		music_player.stream = load(bg_music)
+		music_player.play()
+		current_line += 1
+		process_current_line()
+		return
+	
+	# Update character sprite
+	if line[0] == "character":
+		var character_name = Character.get_enum_from_string(line[1])
+		speaker = character_name
+		dialogue_ui.change_speaker(speaker)
+		current_line += 1
+		process_current_line()
+		return
+	
+	# Change character emotion
+	if line[0] == "feeling":
+		current_emotion = line[1]
 		current_line += 1
 		process_current_line()
 		return
 	
 	# Jump to specified anchor in dialogue script
-	if line.has("goto"):
-		current_line = get_anchor_location(line["goto"])
+	if line[0] == "jump":
+		current_line = get_land_location(line[1])
 		process_current_line()
 		return
 	
 	# Designate dialogue anchor point
-	if line.has("anchor"):
+	if line[0] == "land":
 		current_line += 1
 		process_current_line()
 		return
 		
 	# Transition to next scene
-	if line.has("next_scene"):
-		dialogue_file = line["next_scene"] if !line["next_scene"].is_empty() else ""
+	if line[0] == "next_scene":
+		dialogue_file = line[1] if !line[1].is_empty() else ""
 		SceneManager._fade_out()
 		return
 		
 	# Display dialogue choice options
-	if line.has("choices"):
-		dialogue_ui.display_choices(line["choices"])
+	if line[0] == "choices":
+		dialogue_ui.display_choices(line[1])
 	
 	# Display line of dialogue & character sprite emotion
-	elif line.has("text"):
-		var character_name = Character.get_enum_from_string(line["speaker"])
-		var emotion
-		if line.has("feeling"):
-			emotion = line["feeling"]
-		else:
-			emotion = "happy"
-		dialogue_ui.change_line(character_name, line["text"])
-		character.change_character(character_name, emotion)
+	elif line[0] == "text":
+		character.change_character(speaker, current_emotion)
+		dialogue_ui.change_line(line[1])
+		#current_line += 1
+		#process_current_line()
+		#return
 	
 	# Skip & document any lines in script not accounted for in code
 	else:
-		print_debug("Skipped line: " + line)
+		print_debug("Skipped line: " + line[1])
 		current_line += 1
 		process_current_line()
 		return
 
 # Get line index of desired anchor
-func get_anchor_location(anchor: String):
+func get_land_location(land: String):
 	for i in range(dialogue_lines.size()):
-		if dialogue_lines[i].has("anchor") and dialogue_lines[i]["anchor"] == anchor:
+		var parsed_line = parse_line(dialogue_lines[i])
+		if parsed_line[0] == "land" and parsed_line[1] == land:
+			print_debug(i)
 			return i
-	printerr("Error: Could not find anchor '" + anchor + "'")
+	printerr("Error: Could not find anchor '" + land + "'")
 	return null
 
 # Go to desired anchor when dialogue choice is selected
-func _on_choice_selected(anchor: String):
-	current_line = get_anchor_location(anchor)
+func _on_choice_selected(land: String):
+	current_line = get_land_location(land)
 	process_current_line()
 
 # Stop speaking animation when text is fully visible
@@ -132,13 +170,18 @@ func _on_text_animation_finished():
 func _on_scene_faded_out():
 	dialogue_lines = load_character_dialogue(dialogue_file)
 	current_line = FIRST_LINE
-	var location_check = dialogue_lines[current_line]
 	dialogue_ui.dialogue.visible_characters = 0
 	SceneManager._fade_in()
-	if location_check.has("location"):
-		var bg_image = "res://placeholder_art/backgrounds/" + location_check["location"] + ".png"
-		background.texture = load(bg_image)
-		current_line += 1
+		
+	#var parsed_line = parse_line(dialogue_lines[current_line])
+	#if parsed_line[0] == "location":
+	#	var bg_image = "res://placeholder_art/backgrounds/" + location + ".png"
+	#	background.texture = load(bg_image)
+	
+	#var music_file = "res://placeholder_art/" + music + ".mp3"
+	#music_player.stream = load(music_file)
+	#music_player.play()
+	current_line += 1
 	
 func _on_scene_faded_in():
 	process_current_line()

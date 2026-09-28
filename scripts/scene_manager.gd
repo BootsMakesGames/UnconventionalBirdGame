@@ -4,10 +4,10 @@ extends Node2D
 signal scene_fade_in_finished
 signal scene_fade_out_finished
 
-# Variables for scene transition animation(s)
+# Variables for scene transition animation(s) 
 var transition_layer: CanvasLayer
 var transition_rect: ColorRect
-var transition_time: float = 0.5
+var transition_time: float = 1.25
 
 func _ready():
 # Instantiate transition layer in scene
