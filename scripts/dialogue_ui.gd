@@ -62,8 +62,9 @@ func display_choices(choices):
 	var i = 0
 	for choice in choices:
 		var choice_button = DIALOGUE_OPTIONS.instantiate()
+		var goto = choices[i][1].lstrip(' ')
 		choice_button.text = choices[i][0]
-		choice_button.pressed.connect(_on_option_pressed.bind(choices[i][1]))
+		choice_button.pressed.connect(_on_option_pressed.bind(goto))
 		choice_options.add_child(choice_button)
 	choice_options.show()
 

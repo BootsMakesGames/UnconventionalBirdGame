@@ -66,6 +66,11 @@ func parse_line(line: String):
 	line_info[1] = clean_line_info
 	return line_info
 
+func update_line_info():
+	current_line += 1
+	var line_info = dialogue_lines[current_line].split(":")
+	return line_info
+
 # Update current line of text
 func process_current_line():
 	# Check if current line exists
@@ -138,19 +143,15 @@ func process_current_line():
 		var choiceNo = choicesNo.to_int()
 		var current_choice = 0
 		
-		current_line += 1
-		
 		while current_choice < choiceNo:
-			choices.append(line_info)
+			var updated_line = update_line_info()
+			choices.append(updated_line)
 			current_choice += 1
-			current_line +=1
 			print_debug(current_choice)
 		print_debug(choices)
 		dialogue_ui.display_choices(choices)
 		process_current_line()
 		return
-	#TODO: make multiple choices append to an array or something
-		# will also need to make sure they can jump
 	
 	# Display line of dialogue & character sprite emotion
 	elif line[0] == "text":
