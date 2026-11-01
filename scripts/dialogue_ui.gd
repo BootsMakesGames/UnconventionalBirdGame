@@ -53,7 +53,7 @@ func skip_text_animation():
 	dialogue.visible_ratio = 1
 
 # Create & show dialogue options buttons
-func display_choices(choices):
+func display_choices(choices: Array):
 	# Clear previous choices
 	for child in choice_options.get_children():
 		child.queue_free()
@@ -66,6 +66,7 @@ func display_choices(choices):
 		choice_button.text = choices[i][0]
 		choice_button.pressed.connect(_on_option_pressed.bind(goto))
 		choice_options.add_child(choice_button)
+		i += 1
 	choice_options.show()
 
 # Emit signal when dialogue option is selected

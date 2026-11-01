@@ -144,13 +144,14 @@ func process_current_line():
 		var current_choice = 0
 		
 		while current_choice < choiceNo:
-			var updated_line = update_line_info()
+			current_line += 1
+			var updated_line = parse_line(dialogue_lines[current_line])
 			choices.append(updated_line)
 			current_choice += 1
 			print_debug(current_choice)
 		print_debug(choices)
 		dialogue_ui.display_choices(choices)
-		process_current_line()
+		#process_current_line()
 		return
 	
 	# Display line of dialogue & character sprite emotion
