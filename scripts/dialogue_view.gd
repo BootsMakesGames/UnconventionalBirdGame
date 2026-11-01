@@ -10,11 +10,12 @@ extends Node2D
 var current_line : int
 const FIRST_LINE = 0
 
-# Store dialogue lines for scene
+# Store dialogue info for scene
 var dialogue_lines : Array = []
 var dialogue_file : String = "simple_script"
 var speaker 
 var current_emotion
+var current_choices : Array = []
 
 # Store background image & background music
 var location : String 
@@ -75,6 +76,7 @@ func process_current_line():
 	var line = parse_line(dialogue_lines[current_line])
 	print_debug(line)
 	
+	
 	# Set background image for current scene
 	if line[0] == "location":
 		location = line[1]
@@ -130,7 +132,25 @@ func process_current_line():
 		
 	# Display dialogue choice options
 	if line[0] == "choices":
-		dialogue_ui.display_choices(line[1])
+		var choices = []
+		var line_info = line
+		var choicesNo = line_info[1].lstrip(' ')
+		var choiceNo = choicesNo.to_int()
+		var current_choice = 0
+		
+		current_line += 1
+		
+		while current_choice < choiceNo:
+			choices.append(line_info)
+			current_choice += 1
+			current_line +=1
+			print_debug(current_choice)
+		print_debug(choices)
+		dialogue_ui.display_choices(choices)
+		process_current_line()
+		return
+	#TODO: make multiple choices append to an array or something
+		# will also need to make sure they can jump
 	
 	# Display line of dialogue & character sprite emotion
 	elif line[0] == "text":
@@ -147,7 +167,7 @@ func process_current_line():
 		process_current_line()
 		return
 
-# Get line index of desired anchor
+# Get line index of desired landing 
 func get_land_location(land: String):
 	for i in range(dialogue_lines.size()):
 		var parsed_line = parse_line(dialogue_lines[i])
@@ -157,7 +177,8 @@ func get_land_location(land: String):
 	printerr("Error: Could not find anchor '" + land + "'")
 	return null
 
-# Go to desired anchor when dialogue choice is selected
+
+# Go to desired landing when dialogue choice is selected
 func _on_choice_selected(land: String):
 	current_line = get_land_location(land)
 	process_current_line()
