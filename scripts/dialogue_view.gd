@@ -12,7 +12,7 @@ const FIRST_LINE = 0
 
 # Store dialogue info for scene
 var dialogue_lines : Array = []
-var dialogue_file : String = "simple_script"
+var dialogue_file : String = "simple_script_final"
 var speaker 
 var current_emotion
 var current_choices : Array = []

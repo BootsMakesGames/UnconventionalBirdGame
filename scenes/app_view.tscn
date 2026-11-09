@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://3ryyu85ljq6" path="res://placeholder_art/tablet3.png" id="1_1yr3t"]
 [ext_resource type="Script" uid="uid://dc1ew0te1imuq" path="res://scripts/app_view.gd" id="1_uj8gt"]
 [ext_resource type="Texture2D" uid="uid://buiqh0o5eghoj" path="res://placeholder_art/placeholder_sprite_app-portrait.png" id="2_uj8gt"]
+[ext_resource type="Texture2D" uid="uid://dbci8jsgr12lg" path="res://placeholder_art/birdsong.png" id="3_n83pe"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_t52b7"]
 
@@ -29,6 +30,7 @@ patch_margin_right = 42
 patch_margin_bottom = 39
 
 [node name="PhoneScreen" type="TextureRect" parent="CanvasLayer/PhoneSprite" unique_id=1490509434]
+modulate = Color(0.85, 0.85, 0.85, 1)
 layout_mode = 0
 offset_left = 33.0
 offset_top = 30.0
@@ -44,41 +46,62 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AppUI" type="VBoxContainer" parent="CanvasLayer/PhoneSprite/PhoneScreen/ScrollContainer" unique_id=1123010086]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PhoneSprite/PhoneScreen/ScrollContainer" unique_id=1029672412]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
 
-[node name="AppHeader" type="HSplitContainer" parent="CanvasLayer/PhoneSprite/PhoneScreen/ScrollContainer/AppUI" unique_id=629565918]
+[node name="VSplitContainer" type="VSplitContainer" parent="CanvasLayer/PhoneSprite/PhoneScreen/ScrollContainer/MarginContainer" unique_id=779057368]
 layout_mode = 2
-size_flags_vertical = 4
-split_offsets = PackedInt32Array(1, 0)
-split_offset = 1
+split_offsets = PackedInt32Array(345)
+split_offset = 345
 
-[node name="BirdPortrait" type="Sprite2D" parent="CanvasLayer/PhoneSprite/PhoneScreen/ScrollContainer/AppUI/AppHeader" unique_id=1505720672]
-position = Vector2(265, 100)
-scale = Vector2(0.5902256, 0.5902256)
+[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/PhoneSprite/PhoneScreen/ScrollContainer/MarginContainer/VSplitContainer" unique_id=793533691]
+layout_mode = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="CanvasLayer/PhoneSprite/PhoneScreen/ScrollContainer/MarginContainer/VSplitContainer/HSplitContainer" unique_id=376555429]
+layout_mode = 2
+size_flags_horizontal = 3
+split_offsets = PackedInt32Array(55, 302)
+split_offset = 55
+
+[node name="CommonName" type="Label" parent="CanvasLayer/PhoneSprite/PhoneScreen/ScrollContainer/MarginContainer/VSplitContainer/HSplitContainer/VSplitContainer" unique_id=2093606011]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.35212496, 0.2475, 0.45, 1)
+theme_override_font_sizes/font_size = 40
+text = "Common Name"
+
+[node name="SpeciesName" type="Label" parent="CanvasLayer/PhoneSprite/PhoneScreen/ScrollContainer/MarginContainer/VSplitContainer/HSplitContainer/VSplitContainer" unique_id=1351185154]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.35212496, 0.2475, 0.45, 1)
+theme_override_font_sizes/font_size = 40
+text = "Species Name"
+
+[node name="Button" type="Button" parent="CanvasLayer/PhoneSprite/PhoneScreen/ScrollContainer/MarginContainer/VSplitContainer/HSplitContainer/VSplitContainer" unique_id=588209383]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.35212496, 0.2475, 0.45, 1)
+theme_override_font_sizes/font_size = 35
+theme_override_icons/icon = ExtResource("3_n83pe")
+text = "Bird Call"
+
+[node name="BirdPhoto" type="TextureRect" parent="CanvasLayer/PhoneSprite/PhoneScreen/ScrollContainer/MarginContainer/VSplitContainer/HSplitContainer" unique_id=1240017691]
+layout_mode = 2
+size_flags_horizontal = 3
 texture = ExtResource("2_uj8gt")
+stretch_mode = 5
 
-[node name="NameText" type="VSplitContainer" parent="CanvasLayer/PhoneSprite/PhoneScreen/ScrollContainer/AppUI/AppHeader" unique_id=2130486951]
+[node name="BirdDescription" type="RichTextLabel" parent="CanvasLayer/PhoneSprite/PhoneScreen/ScrollContainer/MarginContainer/VSplitContainer" unique_id=1981912025]
 layout_mode = 2
-size_flags_horizontal = 0
-split_offsets = PackedInt32Array(0, 0)
-
-[node name="BirdName" type="Label" parent="CanvasLayer/PhoneSprite/PhoneScreen/ScrollContainer/AppUI/AppHeader/NameText" unique_id=1349955905]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.21363452, 0.0003110209, 0.31965822, 1)
-theme_override_font_sizes/font_size = 24
-text = "Bird Name"
-
-[node name="SpeciesName2" type="Label" parent="CanvasLayer/PhoneSprite/PhoneScreen/ScrollContainer/AppUI/AppHeader/NameText" unique_id=2026253196]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.4830834, 0.29140002, 0.62, 1)
-text = "Species name"
-horizontal_alignment = 1
-
-[node name="BirdDescription" type="RichTextLabel" parent="CanvasLayer/PhoneSprite/PhoneScreen/ScrollContainer/AppUI" unique_id=1981912025]
-layout_mode = 2
+size_flags_vertical = 0
 theme_override_colors/default_color = Color(0.14, 0.14, 0.14, 1)
+theme_override_font_sizes/normal_font_size = 25
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 fit_content = true

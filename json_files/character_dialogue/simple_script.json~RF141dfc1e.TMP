@@ -1,0 +1,23 @@
+[
+	"location: forest",
+	"music: coastline_theme",
+
+	"character: dodo",
+	"feeling: distressed",
+	"text: I've truly become a silly little guy lately. How long can I make a line of text before it's too long?",
+
+	"feeling: happy",
+	"text: I'm the king of water cup city!",
+	"text: Boy do I love water cups.",
+	"text: Do you like water cups?",
+
+	"choices: 2",
+	"You can never have enough water cups!: test_jump",
+	"I have a favorite water bottle.: test_jump",
+
+	"text: testing 123",
+
+	"land: test_jump",
+	"text: I guess that worked!",
+	"next_scene: dodont"
+]

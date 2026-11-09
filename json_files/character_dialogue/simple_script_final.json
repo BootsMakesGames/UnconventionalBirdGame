@@ -1,0 +1,25 @@
+[
+	"location: forest",
+	"music: coastline_theme",
+
+	"character: dodo",
+	"feeling: happy",
+	"text: Hi there! I'm Dodo.",
+	"text: Pleased to meet you.",
+
+	"feeling: distressed",
+	"text: I've heard that people think I'm extinct.",
+	"text: Do you think I'm extinct?",
+
+	"choices: 2",
+	"That's what I've been told...: yes_extinct",
+	"You're real enough to me!: not_extinct",
+
+	"land: yes_extinct",
+	"text: How unfortunate!",
+
+	"land: not_extinct",
+	"text: Thank you for the reassurance!",
+
+	"next_scene: dodont"
+]
