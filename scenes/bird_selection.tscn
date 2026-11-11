@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dj62nferw6gk"]
+
+[ext_resource type="Texture2D" uid="uid://buiqh0o5eghoj" path="res://placeholder_art/placeholder_sprite_app-portrait.png" id="1_nc4xu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8oaf"]
+size = Vector2(270, 408)
+
+[node name="BirdSelection" type="Control" unique_id=2102132544]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=630696175]
+layout_mode = 0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Split" type="VSplitContainer" parent="Margin" unique_id=601801889]
+layout_mode = 2
+
+[node name="BirdPhoto" type="TextureRect" parent="Margin/Split" unique_id=1980336399]
+layout_mode = 2
+texture = ExtResource("1_nc4xu")
+stretch_mode = 4
+
+[node name="BirdName" type="Label" parent="Margin/Split" unique_id=1927223807]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 34
+text = "Name of Bird"
+horizontal_alignment = 1
+
+[node name="ClickableArea" type="Area2D" parent="Margin" unique_id=1356150574]
+
+[node name="SelectionShape" type="CollisionShape2D" parent="Margin/ClickableArea" unique_id=1689886614]
+position = Vector2(143, 212)
+shape = SubResource("RectangleShape2D_d8oaf")
